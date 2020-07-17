@@ -1,10 +1,9 @@
-#SEMCO B85B BCM4358 WLCSP module, 2 Antenna - 2014.12.10
-#adding two range TSSI parameters
-NVRAMRev=$Rev: 500210 $
+#SEMCO B85 BT AoA BCM4358 WLCSP module, SEMCO S/W, 2 antenna - 2014.10.22
+NVRAMRev=$Rev: 373428 $
 sromrev=11
-boardrev=0x1100
+boardrev=0x1300
 ## boardtype is subject to change
-boardtype=0x0775
+boardtype=0x0745
 boardflags=0x12001001
 #enable eLNA both 2G/5G
 boardflags2=0x00002000
@@ -16,11 +15,8 @@ regrev=0
 antswitch=0
 pdgain5g=4
 pdgain2g=4
-tworangetssi2g=1
-tworangetssi5g=1
-lowpowerrange2g=0
-lowpowerrange5g=0
-olpc_thresh=1
+tworangetssi2g=0
+tworangetssi5g=0
 femctrl=10
 vendid=0x14e4
 devid=0x43e9
@@ -72,20 +68,15 @@ temps_hysteresis=15
 tempoffset=255
 rawtempsense=0x1ff
 
-pa2ga0=0xff6b,0x1645,0xfd64
-pa2ga1=0xff60,0x163f,0xfd62
+pa2ga0=0xff6b,0x1545,0xfd77
+pa2ga1=0xff60,0x153f,0xfd76
 pa5ga0=0xff44,0x1742,0xfd31,0xff47,0x173c,0xfd33,0xff42,0x1693,0xfd3e,0xff54,0x1721,0xfd3e
 pa5ga1=0xff40,0x17ab,0xfd24,0xff44,0x17b2,0xfd26,0xff47,0x1731,0xfd32,0xff47,0x1721,0xfd35
-###low range
-pa2ga2=0xff60,0x0e07,0xfdf8
-pa2ga3=0xff4d,0x0ddd,0xfe02
-pa5ga2=0xff86,0x1003,0xfdd6,0xff99,0x105c,0xfdd3,0xffa7,0x1017,0xfdd5,0xffee,0x109a,0xfde0
-pa5ga3=0xff4d,0x0f5f,0xfde2,0xff55,0x0f82,0xfdda,0xff6e,0x0f9e,0xfdca,0xff6c,0x0fb0,0xfdcb
 
-maxp2ga0=76
-maxp5ga0=76,76,76,76
-maxp2ga1=76
-maxp5ga1=76,76,76,76
+maxp2ga0=70
+maxp5ga0=74,74,74,74
+maxp2ga1=68
+maxp5ga1=74,74,74,74
 subband5gver=0x4
 pdoffsetcckma0=0x3
 pdoffsetcckma1=0x3
@@ -145,40 +136,22 @@ cckdigfilttype=4
 cck_onecore_tx=1
 tssisleep_en=0x1f
 
-swctrlmap_5g=0x02080208,0x05a00000,0x04200000,0x000000,0x0fd
-swctrlmap_2g=0x14011401,0x28500000,0x08100000,0x020202,0x0ff
-
-#fem_table_init_val=0x1,0x1
-## To improve BTC throughput fluctuation
-swctrlmapext_2g=0x0,0x0,0x0,0x0,0x03
+## SWCTRLMAP using AN29223K and AN29222K
+swctrlmap_5g=0x020c020c,0x05a40000,0x04240000,0x000000,0x0f8
+swctrlmap_2g=0x10211021,0x28510000,0x08110000,0x020202,0x0ff
 
 ## Enabling OOB signal - needed for final board
 host_wake_opt=0
 
 # For Sensor Hub UART
-muxenab=0x4
-shwakepin=0x62
-
-## 2G TX power compensation
-#powoffs2gtna0=0,-1,-1,0,2,3,4,4,2,0,-1,-2,-1,0
-#powoffs2gtna1=0,0,0,0,2,3,4,4,4,2,1,1,1,0
-
-rpcal2g=10
-rpcal5gb0=20
-rpcal5gb1=10
-rpcal5gb2=20
-rpcal5gb3=10
-
-#dynamicsarctrl_2g=0xffb0
-#dynamicsarctrl_5g=0xffa0
+#muxenab=0x4
 
 btc_params82=0x0
 btc_params51=0x409f
-btc_params73=0
-prot_btrssi_thresh=0
 
 # ###########  BTC Dynctl profile params  ############
 # flags:bit0 - dynctl enabled, bit1 dynamic desense, bit2 dynamic mode
+
 btcdyn_flags=0x7
 btcdyn_dflt_dsns_level=0
 btcdyn_low_dsns_level=0
@@ -189,7 +162,19 @@ btcdyn_default_btc_mode=1
 btcdyn_msw_rows=1
 btcdyn_dsns_rows=1
 # --- mode switch data rows (max is 4) ---
-btcdyn_msw_row0=1,12,-70,-5,-100
+btcdyn_msw_row0=1,12,-70,-30,-90
 # --- desense switching data rows (max is 4) ---
 btcdyn_dsns_row0=5,4,0,-65,-65
-## btc parameters should be added
+
+## 2G TX power compensation
+#powoffs2gtna0=-4,-6,-6,-6,-4,-3,0,0,-1,-3,-4,-1,0,0
+#powoffs2gtna1=-2,-3,-3,-1,-1,0,1,2,2,0,0,0,0,0
+
+rpcal2g=10
+rpcal5gb0=20
+rpcal5gb1=10
+rpcal5gb2=20
+rpcal5gb3=10
+
+#dynamicsarctrl_2g=0xffb0
+#dynamicsarctrl_5g=0xffa0
