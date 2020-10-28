@@ -16,7 +16,7 @@
 PRODUCT_PACKAGES += libGLES_mali
 
 # Include blob-finder
-include vendor/samsung/trelte-common/find-vendor-blobs.mk
+include vendor/samsung/universal5433/trelte-common/find-vendor-blobs.mk
 
 # Proprietary blobs
-PRODUCT_COPY_FILES += $(call find-vendor-blobs,vendor/samsung/trelte-common/proprietary)
+PRODUCT_COPY_FILES += $(call find-vendor-blobs,vendor/samsung/universal5433/trelte-common/proprietary)
